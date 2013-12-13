@@ -2,12 +2,12 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        testFile: 'test/**/*.js',
-        srcFile:'src/**/*.js',
+        testFile: 'client/test/**/*.js',
+        srcFile:'client/src/**/*.js',
         browserify: {
             dist: {
                 files: {
-                    'public/javascripts/front.js': ['src/front.js']
+                    'public/javascripts/front.js': ['client/src/front.js']
                 },
                 options: {
                     debug: true

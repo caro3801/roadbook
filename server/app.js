@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -24,12 +23,12 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(require('stylus').middleware(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+    app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
@@ -38,5 +37,5 @@ app.get('/roadBooks', roadBooks.index);
 app.get('/roadBook/:id', roadBooks.roadBookInfos);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
