@@ -1,12 +1,36 @@
+"use strict";
 var dot = require('dot');
-var eventBus = require('../utils/EventBus');
-var basketViewTemplate = require('../templates/basketTemplate.js');
-var basketViewPresenter = require('../presenters/basketPresenter');
+var basketViewTemplate = require('../templates/basketTemplate');
 
-function BasketView() {
+function BasketView(domRequest) {
+    this.domRequest = domRequest;
     this.basketViewTemplateFunc = dot.template(basketViewTemplate, undefined, {})
 }
 
-BasketView.prototype.render = function basketViewRender() {
-    var html = this.basketViewTemplateFunc(basketViewPresenter.basketFullView());
+BasketView.prototype.render = function basketViewRender(dto) {
+    this.domRequest.querySelector("#content").innerHTML = this.basketViewTemplateFunc(dto);
 };
+
+
+BasketView.prototype.installIncrementRoadBookToBasketHandler = function installIncrementRoadBookToBasketHandler(basketIncrementRoadBookToBasketHandler){
+    this.installBasketListHandler(basketIncrementRoadBookToBasketHandler,".increment") ;
+};
+BasketView.prototype.installDecrementRoadBookToBasketHandler = function installDecrementRoadBookToBasketHandler(basketDecrementRoadBookToBasketHandler){
+    this.installBasketListHandler(basketDecrementRoadBookToBasketHandler,".decrement") ;
+};
+BasketView.prototype.installDeleteRoadBookToBasketHandler = function installDeleteRoadBookToBasketHandler(basketDeleteRoadBookToBasketHandler){
+    this.installBasketListHandler(basketDeleteRoadBookToBasketHandler,".trashMe") ;
+};
+BasketView.prototype.installBasketListHandler = function installBasketListHandler(basketListHandler, DOMSelector){
+    var buttons = this.domRequest.querySelectorAll(DOMSelector);
+    var i=0;
+    for (;i<buttons.length;i++){
+        buttons[i].addEventListener("click", function callBackInstallRoadBookHandler(domEvent) {
+            var domObject = domEvent.currentTarget;
+            /** @namespace domObject.dataset.roadbookId : id du roadbook cliqué */
+            var roadBookId = domObject.dataset.roadbookId;
+            basketListHandler(roadBookId);
+        });
+    }
+}
+module.exports = BasketView;

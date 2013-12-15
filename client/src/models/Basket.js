@@ -1,17 +1,17 @@
-function Basket(items){
-    this.total=0;
-    this.items = items ? items : [];
-}
+var basket = {
+    basketTotalPrice : 0,
+    items : []
+};
 
-Basket.prototype.getNbItem = function basketNbItem(){
+basket.getNbItem = function basketNbItem(){
     return this.items.length ;
 };
 
-Basket.prototype.getTotalPrice = function basketTotalPrice(){
-    return this.total ;
+basket.getTotalPrice = function basketTotalPrice(){
+    return this.basketTotalPrice ;
 };
-Basket.prototype.addRoadBook = function addRoadBook(item){
-    this.total +=item.price;
+basket.addRoadBook = function addRoadBook(item){
+    this.basketTotalPrice +=item.price;
     var basketItem = this.getBasketItemByItem(item);
     if(basketItem) {
         basketItem.incrementQuantity();
@@ -20,12 +20,12 @@ Basket.prototype.addRoadBook = function addRoadBook(item){
     }
 };
 
-Basket.prototype.delRoadBook = function delRoadBook(item){
-    this.total -=item.price;
+basket.decrementRoadBook = function decrementRoadBook(item){
+    this.basketTotalPrice -=item.price;
     var basketItem = this.getBasketItemByItem(item);
     if(basketItem) {
         if(basketItem.quantity<=1){
-            this.items.splice(this.items.indexOf(basketItem));
+            this.deleteBasketItem(basketItem);
         }else {
             basketItem.decrementQuantity();
         }
@@ -34,15 +34,29 @@ Basket.prototype.delRoadBook = function delRoadBook(item){
     }
 };
 
+basket.deleteRoadBook = function deleteRoadBook(item){
+    var basketItem = this.getBasketItemByItem(item);
+    if(basketItem) {
+        this.basketTotalPrice -= basketItem.quantity*basketItem.item.price;
+        basketItem.quantity=0;
+        this.deleteBasketItem(basketItem);
+    } else {
+        throw new Error("l'élément que vous cherchez à supprimer n'existe pas");
+    }
+};
 
-Basket.prototype.getBasketItemByItem = function getBasketItemByItem(item){
+basket.deleteBasketItem = function deleteBasketItem(basketItem) {
+    this.items.splice(this.items.indexOf(basketItem),1);
+};
+
+basket.getBasketItemByItem = function getBasketItemByItem(item){
     var filterBasket = this.items.filter(function(basketItem){
-        return basketItem.item === item;
+        return basketItem.item.id === item.id;
     });
     return filterBasket.length > 0 ? filterBasket[0] : null;
 };
 
-Basket.prototype.getQuantityOfItem = function getBasketQuantityOfItem(item){
+basket.getQuantityOfItem = function getBasketQuantityOfItem(item){
 
     var basketItem = this.getBasketItemByItem(item);
     var quantity=0;
@@ -55,7 +69,7 @@ Basket.prototype.getQuantityOfItem = function getBasketQuantityOfItem(item){
 };
 
 
-Basket.prototype.getNbTotalItem = function getBasketTotalItem(){
+basket.getNbTotalItem = function getBasketTotalItem(){
     var nbTotalItem = 0;
     var nb=this.getNbItem();
 
@@ -77,4 +91,4 @@ BasketItem.prototype.decrementQuantity = function(){
     this.quantity--;
 };
 
-module.exports = Basket;
+module.exports = basket;

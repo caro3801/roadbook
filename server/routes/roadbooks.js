@@ -36,7 +36,5 @@ exports.roadBookInfos = function (req, res) {
     var values = datas.roadBooks.filter(function(elem) {
         return elem.id == req.params.id;
     });
-    res.json({
-        "roadBook": values[0]
-    });
+    res.json(values[0]);
 };
