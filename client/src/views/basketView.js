@@ -32,5 +32,9 @@ BasketView.prototype.installBasketListHandler = function installBasketListHandle
             basketListHandler(roadBookId);
         });
     }
-}
+};
+BasketView.prototype.installBasketPaymentHandler = function installBasketPaymentHandler(basketPaymentHandler) {
+    var payment = this.domRequest.querySelector("#payment");
+    payment.addEventListener("click", basketPaymentHandler);
+};
 module.exports = BasketView;

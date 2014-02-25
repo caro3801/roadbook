@@ -1,3 +1,5 @@
+var utils = require("../utils");
+
 function RoadBook() {
     var _price = 0;
     this.id = 0;
@@ -8,7 +10,7 @@ function RoadBook() {
     this.summary = "";
     Object.defineProperty(this, "price", {
         get: function getRoadBookPrice() {
-            return _price;
+            return _price*utils.tvaMulti;
         },
         set: function setRoadBookPrice(price) {
             if (price<0){

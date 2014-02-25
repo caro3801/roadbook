@@ -79,6 +79,13 @@ basket.getNbTotalItem = function getBasketTotalItem(){
     return nbTotalItem;
 };
 
+basket.toJSON = function toJSON(){
+    var json = [];
+    for(var i = 0; i<this.items.length; i++){
+        json.push(this.items[i]);
+    }
+    return {basket:json};
+};
 
 function BasketItem(item){
     this.item=item;
@@ -90,5 +97,10 @@ BasketItem.prototype.incrementQuantity = function(){
 BasketItem.prototype.decrementQuantity = function(){
     this.quantity--;
 };
+
+BasketItem.prototype.toJSON = function toJSON(){
+    return {id:this.item.id,quantity:this.quantity};
+};
+
 
 module.exports = basket;

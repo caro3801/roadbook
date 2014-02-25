@@ -3,7 +3,7 @@ var dot = require('dot');
 var roadBooksTemplate = require('../templates/roadBooksTemplate');
 
 function RoadBooksView(domRequest) {
-    this.domRequest = domRequest;
+   this.domRequest = domRequest;
    this.roadBooksTemplateFunc = dot.template(roadBooksTemplate, undefined, {});
 }
 

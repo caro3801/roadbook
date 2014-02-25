@@ -24,6 +24,16 @@ var roadBookStore = {
         if(xhr.status == 200)
             roadBooks = RoadBooks.fromJSON(xhr.responseText);
         return roadBooks;
+    },
+    sendBasket : function sendBasket(basket) {
+        var redirectUrl = "";
+        var xhr = new XHR(XHR.createXMLHttpRequest());
+        xhr.post("/payment", false);
+        xhr.addSuccessCallBack(function roadBookServiceSuccessCallBack(json){
+            redirectUrl = JSON.parse(json).redirect;
+        });
+        xhr.send(JSON.stringify(basket));
+        return redirectUrl;
     }
 };
 

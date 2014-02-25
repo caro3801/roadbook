@@ -11,10 +11,21 @@ XHR.createXMLHttpRequest = function createXMLHttpRequest() {
 XHR.prototype.get = function XHRGet(url, asynchrone) {
     this.asynchrone = asynchrone;
     this.xhr.open("GET", url, this.asynchrone);
+    this.xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+};
+
+XHR.prototype.post = function XHRPost(url, asynchrone) {
+    this.asynchrone = asynchrone;
+    this.xhr.open("POST", url, this.asynchrone);
+    this.xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 };
 
 XHR.prototype.send = function XHRSend(params) {
+    try{
     this.xhr.send(params);
+    } catch(e) {
+        console.log(e);
+    }
     if(!this.asynchrone) {
         if(this.xhr.status === 200) {
             if(this.successCallBack) {

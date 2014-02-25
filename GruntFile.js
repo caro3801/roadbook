@@ -2,7 +2,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        testFile: 'client/test/**/*.js',
+        clientTestFile: 'client/test/**/*.js',
+        serverTestFile: 'server/test/**/*.js',
         srcFile:'client/src/**/*.js',
         browserify: {
             dist: {
@@ -20,16 +21,26 @@ module.exports = function(grunt) {
                 tasks: ['browserify']
             },
             test:{
-                files: ['<%= testFile %>', '<%= srcFile %>'],
+                files: ['<%= clientTestFile %>', '<%= srcFile %>'],
                 tasks: ['browserify', 'test']
+            },
+            serverTest:{
+                files: ['<%= serverTestFile %>', '<%= srcFile %>'],
+                tasks: ['browserify', 'serverTest']
             }
         },
         mochaTest: {
-            test: {
+            clientTest: {
                 options: {
                     reporter: 'spec'
                 },
-                src: ['<%= testFile %>']
+                src: ['<%= clientTestFile %>']
+            },
+            serverTest: {
+                options: {
+                    reporter: 'spec'
+                },
+                src: ['<%= serverTestFile %>']
             }
         }
     });
@@ -38,7 +49,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-mocha-test');
 
-    grunt.registerTask('test', ['mochaTest', 'watch:test']);
+    grunt.registerTask('test', ['mochaTest:clientTest', 'watch:test']);
+    grunt.registerTask('serverTest', ['mochaTest:serverTest', 'watch:serverTest']);
     grunt.registerTask('default', ['browserify', 'watch:dev']);
 
 };

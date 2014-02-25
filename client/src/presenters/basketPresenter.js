@@ -34,6 +34,7 @@ basketPresenter.attachHandler = function basketPresenterAttachHandler() {
     this.view.installIncrementRoadBookToBasketHandler(basketPresenter.basketIncrementRoadBookToBasketHandler);
     this.view.installDecrementRoadBookToBasketHandler(basketPresenter.basketDecrementRoadBookToBasketHandler);
     this.view.installDeleteRoadBookToBasketHandler(basketPresenter.basketDeleteRoadBookToBasketHandler);
+    this.view.installBasketPaymentHandler(basketPresenter.basketPaymentHandler);
 };
 basketPresenter.basketIncrementRoadBookToBasketHandler = function basketIncrementRoadBookToBasketHandler(roadBookId) {
     basketPresenter.model.addRoadBook(roadBookStore.getById(roadBookId));
@@ -46,5 +47,9 @@ basketPresenter.basketDecrementRoadBookToBasketHandler = function basketDecremen
 basketPresenter.basketDeleteRoadBookToBasketHandler = function basketDeleteRoadBookToBasketHandler(roadBookId) {
     basketPresenter.model.deleteRoadBook(roadBookStore.getById(roadBookId));
     basketPresenter.updateView();
+};
+basketPresenter.basketPaymentHandler = function basketPaymentHandler() {
+    var redirectUrl = roadBookStore.sendBasket(basketPresenter.model);
+    window.location.assign(redirectUrl);
 };
 module.exports = basketPresenter;

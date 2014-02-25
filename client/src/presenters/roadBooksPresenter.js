@@ -1,12 +1,15 @@
 var roadBookStore = require("../stores/RoadBookStore");
 var RoadBooksView = require("../views/RoadBooksView");
+var BasketMiniView = require("../views/BasketMiniView");
 
 var roadBooksPresenter = {};
 
 roadBooksPresenter.init = function roadBooksPresenterInit(domRequest, basket) {
     this.view = new RoadBooksView(domRequest);
+    this.view2 = new BasketMiniView(domRequest);
     this.model = roadBookStore.getAll();
     this.basket = basket;
+    this.updateMiniView();
     this.updateView();
 };
 
@@ -16,20 +19,22 @@ roadBooksPresenter.updateView = function roadBooksPresenterUpdateView() {
         return {"id":elem.id,"title" :elem.title};
     });
     this.view.render(dtoRoadBooks);
-    this.attachHandler();
+     this.attachHandler();
 };
 
+roadBooksPresenter.updateMiniView = function roadBooksPresenterUpdateMiniView(){
+    var dtoBasketMini = {};
+    dtoBasketMini.nbItems = this.basket.getNbTotalItem();
+    this.view2.render(dtoBasketMini);
+}
+
 roadBooksPresenter.attachHandler = function basketPresenterAttachHandler() {
-    this.view.installRoadBookHandler(roadBooksPresenter.roadBookHandler);
     this.view.installAddRoadBookToBasketHandler(roadBooksPresenter.roadBookAddRoadBookToBasketHandler);
 };
 
 roadBooksPresenter.roadBookAddRoadBookToBasketHandler = function roadBookAddRoadBookToBasketHandler(roadBookId) {
     roadBooksPresenter.basket.addRoadBook(roadBookStore.getById(roadBookId));
-};
-
-roadBooksPresenter.roadBookHandler = function roadBooksPresenterRoadBookHandler(roadBookId, roadBookTitle) {
-    window.location.hash="roadbook/"+roadBookId+"/"+encodeURI(roadBookTitle);
+    roadBooksPresenter.updateMiniView();
 };
 
 module.exports = roadBooksPresenter;

@@ -1,7 +1,7 @@
-module.exports="<a href='/#basket'>Sac à dos</a>" +
+module.exports="" +
     "<div>Road Book</div>" +
     "<ul>" +
         "{{~ it.roadBooks : roadBook}}" +
-            "<li data-roadbook-id='{{=roadBook.id}}'>{{=roadBook.title}}</li><button data-roadbook-id='{{=roadBook.id}}'>Ajouter au panier</button>" +
+            "<li><a href='/#/roadbook/{{=roadBook.id}}/{{=roadBook.title}}'>{{=roadBook.title}}</a></li><button data-roadbook-id='{{=roadBook.id}}'>Ajouter au panier</button>" +
         "{{~}}" +
     "</ul>";

@@ -14,7 +14,12 @@ function router(hash) {
             break;
         case /roadbook/.test(hash):
             var hashValues = hash.split("/");
-            roadBookPresenter.init(document, basket, hashValues[1]);
+            roadBookPresenter.init(document, basket, hashValues[2]);
+            break;
+        case /orderExecute/.test(hash):
+            var hashValues = hash.split("/");
+            console.log(hashValues);
+            basketPresenter.init(document,basket);
             break;
     }
 }
