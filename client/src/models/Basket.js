@@ -1,3 +1,5 @@
+var roadBookStore = require('../stores/roadBookStore');
+
 var basket = {
     basketTotalPrice : 0,
     items : []
@@ -85,6 +87,17 @@ basket.toJSON = function toJSON(){
         json.push(this.items[i]);
     }
     return {basket:json};
+};
+
+basket.fromJSON = function basketFromJson(stringData) {
+    var items = JSON.parse(stringData);
+    for(var i=0; i < items.length; i++) {
+        var roadBook = roadBookStore.getById(items[i].id);
+        for(var j = 0; j< items[i].quantity; j++){
+            this.addRoadBook(roadBook);
+        }
+    }
+    return this;
 };
 
 function BasketItem(item){

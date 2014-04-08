@@ -11,7 +11,7 @@ function BasketMiniView(domRequest) {
 }
 
 BasketMiniView.prototype.render = function basketMiniViewRender(dto) {
-    this.domRequest.querySelector("#menu").innerHTML = this.basketMiniViewTemplateFunc(dto);
+    this.domRequest.querySelector("#header").innerHTML = this.basketMiniViewTemplateFunc(dto);
 };
 
 module.exports = BasketMiniView;

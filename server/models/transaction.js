@@ -16,7 +16,7 @@ var transactionDescriptor = {
                 'price': filterItem.price
             });
             this.item_list.addItem(item);
-            this.amount.addItemPrice(item.priceValue);
+            this.amount.addItemPrice(item.priceValue*item.quantity);
         }
     },
     'property': {

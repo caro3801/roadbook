@@ -1,0 +1,37 @@
+headerheight=image-size('../public/images/background.png')[1]
+footerheight=image-size('../public/images/footer.png')[1]
+.header
+  background-image : url("/images/background.png")
+  height : headerheight
+  position : fixed
+  top : 0px
+  left :0px
+  right :0px
+
+logo = "/images/logo.png"
+
+.logo
+  position : absolute
+  bottom :0px
+  background-image : url(logo)
+  width : image-size('../public'+logo)[0]
+  height : image-size('../public'+logo)[1]
+
+.content
+  background-color : #f0eed2
+  position : fixed
+  left: 0
+  right :0
+  top: headerheight
+  bottom : footerheight
+
+footer="/images/footer.png"
+
+.footer
+  background-image : url(footer)
+  position :fixed
+  bottom:0
+  left: 0
+  right :0
+  height : footerheight
+

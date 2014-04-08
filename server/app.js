@@ -39,6 +39,7 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 app.get('/roadBooks', roadBooks.index);
 app.get('/roadBook/:id', roadBooks.roadBookInfos);
+app.get('/basket/:id', payment.consult);
 app.post('/payment', payment.order);
 app.get('/payment/cancel', payment.orderCancel);
 app.get('/payment/execute', payment.orderExecute);

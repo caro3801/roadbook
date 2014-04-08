@@ -1,6 +1,7 @@
 var roadBooksPresenter = require('./presenters/roadBooksPresenter');
 var roadBookPresenter = require('./presenters/roadBookPresenter');
 var basketPresenter = require('./presenters/basketPresenter');
+var basketStore = require('./stores/basketStore');
 var basket = require('./models/Basket');
 
 function router(hash) {
@@ -10,6 +11,10 @@ function router(hash) {
             roadBooksPresenter.init(document, basket);
             break;
         case /basket/.test(hash):
+            var hashValues = hash.split("/");
+            if(hashValues[2]){
+                basket = basketStore.getById(hashValues[2]);
+            }
             basketPresenter.init(document,basket);
             break;
         case /roadbook/.test(hash):
