@@ -1,3 +1,7 @@
+logo = "/images/logo.png"
+tab = "/images/tab.png"
+footer="/images/footer.png"
+default="/images/default.png"
 headerheight=image-size('../public/images/background.png')[1]
 footerheight=image-size('../public/images/footer.png')[1]
 .header
@@ -8,24 +12,44 @@ footerheight=image-size('../public/images/footer.png')[1]
   left :0px
   right :0px
 
-logo = "/images/logo.png"
-
 .logo
   position : absolute
-  bottom :0px
+  bottom :15px
+  left : 10%
   background-image : url(logo)
   width : image-size('../public'+logo)[0]
   height : image-size('../public'+logo)[1]
 
+.tab
+  position : absolute
+  top :0px
+  right: 2%
+  background-image : url(tab)
+  text-align : center
+  width : image-size('../public'+tab)[0]
+  height : image-size('../public'+tab)[1]
+
 .content
+  position : absolute
+  top :image-size('../public'+tab)[1]px
+  right: 0
+  left: 0
+  bottom 0
+
+
+.tab a
+  color:#fab30c
+  height:100%
+  width:90%
+  vertical-align : middle
+
+.page
   background-color : #f0eed2
   position : fixed
   left: 0
   right :0
   top: headerheight
   bottom : footerheight
-
-footer="/images/footer.png"
 
 .footer
   background-image : url(footer)
@@ -35,3 +59,24 @@ footer="/images/footer.png"
   right :0
   height : footerheight
 
+article
+  position:relative
+  min-width : 700px
+
+.roadbook-img
+  position : relative
+  background-image : url(default)
+  width : image-size('../public'+default)[0]
+  height : image-size('../public'+default)[1]
+
+.roadbook-details
+  position : absolute
+  left:image-size('../public'+default)[0]
+  top:0
+  right: 100px
+
+.roadbook-price
+  position : absolute
+  right: 0
+  top:0
+  width:100px

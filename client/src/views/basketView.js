@@ -8,7 +8,7 @@ function BasketView(domRequest) {
 }
 
 BasketView.prototype.render = function basketViewRender(dto) {
-    this.domRequest.querySelector("#content").innerHTML = this.basketViewTemplateFunc(dto);
+    this.domRequest.querySelector(".content").innerHTML = this.basketViewTemplateFunc(dto);
 };
 
 

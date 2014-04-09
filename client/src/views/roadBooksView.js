@@ -44,7 +44,7 @@ RoadBooksView.prototype.installAddRoadBookToBasketHandler = function installAddR
 };
 
 RoadBooksView.prototype.render = function roadBooksViewRender(dtoRoadBooks) {
-    this.domRequest.querySelector("#content").innerHTML = this.roadBooksTemplateFunc(dtoRoadBooks);
+    this.domRequest.querySelector(".content").innerHTML = this.roadBooksTemplateFunc(dtoRoadBooks);
 };
 
 module.exports = RoadBooksView;
