@@ -1,12 +1,14 @@
 "use strict";
 
 var BasketView = require('../views/BasketView');
+var BasketMiniView = require('../views/BasketMiniView');
 var roadBookStore = require('../stores/RoadBookStore');
 
 var basketPresenter = {};
 
 basketPresenter.init = function initBasketViewPresenter(domRequest,basket) {
     this.view = new BasketView(domRequest);
+    this.view2 = new BasketMiniView(domRequest);
     this.model = basket;
     this.updateView();
 };
@@ -26,10 +28,13 @@ basketPresenter.updateView = function basketPresenterView() {
             'price':basketItem.quantity * basketItem.item.price
         });
     }
+    dto.nbItems= this.model.getNbTotalItem();
     this.view.render(dto);
+    this.view2.render(dto);
     this.attachHandler();
 
 };
+
 basketPresenter.attachHandler = function basketPresenterAttachHandler() {
     this.view.installIncrementRoadBookToBasketHandler(basketPresenter.basketIncrementRoadBookToBasketHandler);
     this.view.installDecrementRoadBookToBasketHandler(basketPresenter.basketDecrementRoadBookToBasketHandler);
