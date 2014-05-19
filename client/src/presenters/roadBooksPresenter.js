@@ -16,7 +16,7 @@ roadBooksPresenter.init = function roadBooksPresenterInit(domRequest, basket) {
 roadBooksPresenter.updateView = function roadBooksPresenterUpdateView() {
     var dtoRoadBooks = {};
     dtoRoadBooks.roadBooks = this.model.roadBooks.map(function (elem){
-        return {"id":elem.id,"title" :elem.title};
+        return {"id":elem.id,"title" :elem.title,'time': elem.time, 'difficulty':elem.difficulty, 'ground': elem.ground};
     });
     this.view.render(dtoRoadBooks);
      this.attachHandler();

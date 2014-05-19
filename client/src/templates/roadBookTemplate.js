@@ -6,7 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 module.exports="" +
-    "<a href='/#/home'>home</a><button id='addToBasket' data-roadbook-id='{{=it.id}}'>Ajouter au panier</button>" +
+    "<a href='/#/home'>home</a><button id='addToBasket' data-roadbook-id='{{=it.id}}'>Ajouter au panier</button><button id='editRoadBook'>Editer</button>" +
     "<div>{{=it.id}} - {{=it.title}} - {{=it.country}}</div>" +
     "<p>{{=it.summary}}</p>" +
     "<ul>" +

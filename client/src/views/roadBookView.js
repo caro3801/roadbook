@@ -9,7 +9,7 @@ function RoadBookView(domRequest, id){
 
 RoadBookView.prototype.render = function roadBookViewRender(dtoRoadBook){
     var html = this.roadBookTemplateFunc(dtoRoadBook);
-    this.domRequest.querySelector("#content").innerHTML = html;
+    this.domRequest.querySelector(".content").innerHTML = html;
 };
 
 RoadBookView.prototype.installAddRoadBookToBasketHandler = function installAddRoadBookToBasketHandler(addRoadBookToBasketHandler){
@@ -20,6 +20,14 @@ RoadBookView.prototype.installAddRoadBookToBasketHandler = function installAddRo
         /** @namespace domObject.dataset.roadbookId : id du roadbook cliqué */
         var roadBookId = domObject.dataset.roadbookId;
         addRoadBookToBasketHandler(roadBookId);
+    });
+};
+
+RoadBookView.prototype.installEditRoadBookHandler = function installEditRoadBookHandler(editRoadBook){
+    var button = this.domRequest.getElementById("editRoadBook");
+
+    button.addEventListener("click", function callBackInstallRoadBookHandler(domEvent) {
+        editRoadBook();
     });
 };
 

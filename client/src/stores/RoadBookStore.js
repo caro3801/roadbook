@@ -34,6 +34,14 @@ var roadBookStore = {
         });
         xhr.send(JSON.stringify(basket));
         return redirectUrl;
+    },
+    save : function saveRoadBook(roadBook) {
+        var xhr = new XHR(XHR.createXMLHttpRequest());
+        xhr.post("/roadbook/"+roadBook.id, false);
+        xhr.addSuccessCallBack(function roadBookServiceSuccessCallBack(json){
+            console.log("success");
+        });
+        xhr.send(JSON.stringify(roadBook));
     }
 };
 

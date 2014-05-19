@@ -10,3 +10,8 @@ exports.roadBookInfos = function (req, res) {
     });
     res.json(values[0]);
 };
+
+exports.save = function (req, res) {
+    console.log(req.body);
+    res.json({'status':'ok'});
+};

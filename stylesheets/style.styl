@@ -30,6 +30,7 @@ footerheight=image-size('../public/images/footer.png')[1]
   height : image-size('../public'+tab)[1]
 
 .content
+  overflow: auto
   position : absolute
   top :image-size('../public'+tab)[1]px
   right: 0
@@ -63,6 +64,9 @@ article
   position:relative
   min-width : 700px
 
+.roadbook-list
+  position : relative
+
 .roadbook-img
   position : relative
   background-image : url(default)
@@ -74,9 +78,71 @@ article
   left:image-size('../public'+default)[0]
   top:0
   right: 100px
+  display: flex
+  flex-direction: column
+  height:100%
+
+.roadbook-title
+  width:100%
+  text-align : center
 
 .roadbook-price
   position : absolute
   right: 0
   top:0
   width:100px
+
+.informations
+  li
+    display:block
+    float:left
+
+
+time-express = "/images/pictos/time/court.png"
+time-short="/images/pictos/time/moyen.png"
+time-long="/images/pictos/time/long.png"
+.time-0
+  background-image : url(time-express)
+  width : image-size('../public'+time-express)[0]
+  height : image-size('../public'+time-express)[1]
+.time-1
+  background-image : url(time-short)
+  width : image-size('../public'+time-short)[0]
+  height : image-size('../public'+time-short)[1]
+.time-2
+  background-image : url(time-long)
+  width : image-size('../public'+time-long)[0]
+  height : image-size('../public'+time-long)[1]
+
+ground-plain = "/images/pictos/ground/collines.png"
+ground-forest="/images/pictos/ground/foret.png"
+ground-mountain="/images/pictos/ground/montagne.png"
+.ground-0
+  background-image : url(ground-plain)
+  width : image-size('../public'+ground-plain)[0]
+  height : image-size('../public'+ground-plain)[1]
+.ground-1
+  background-image : url(ground-forest)
+  width : image-size('../public'+ground-forest)[0]
+  height : image-size('../public'+ground-forest)[1]
+.ground-2
+  background-image : url(ground-mountain)
+  width : image-size('../public'+ground-mountain)[0]
+  height : image-size('../public'+ground-mountain)[1]
+
+difficulty-easy = "/images/pictos/difficulty/facile.png"
+difficulty-medium="/images/pictos/difficulty/moyen.png"
+difficulty-hard="/images/pictos/difficulty/difficile.png"
+
+.difficulty-0
+  background-image : url(difficulty-easy)
+  width : image-size('../public'+ difficulty-easy)[0]
+  height : image-size('../public'+ difficulty-easy)[1]
+.difficulty-1
+  background-image : url(difficulty-medium)
+  width : image-size('../public'+ difficulty-medium)[0]
+  height : image-size('../public'+difficulty-medium)[1]
+.difficulty-2
+  background-image : url(difficulty-hard)
+  width : image-size('../public'+difficulty-hard)[0]
+  height : image-size('../public'+difficulty-hard)[1]
