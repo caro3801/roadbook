@@ -11,7 +11,8 @@ module.exports = function(grunt) {
                     'public/javascripts/front.js': ['client/src/front.js']
                 },
                 options: {
-                    debug: true
+                    debug: true,
+                    transform: ["partialify"]
                 }
             }
         },

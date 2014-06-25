@@ -1,10 +1,12 @@
 "use strict";
 var dot = require('dot');
-var roadBooksTemplate = require('../templates/roadBooksTemplate');
+var roadBooksTemplate = require('../templates/roadBooksTemplate.html');
+var roadBooksListTemplate = require('../templates/roadBooksListTemplate.html');
 
 function RoadBooksView(domRequest) {
    this.domRequest = domRequest;
    this.roadBooksTemplateFunc = dot.template(roadBooksTemplate, undefined, {});
+   this.roadBooksListTemplateFunc = dot.template(roadBooksListTemplate, undefined, {});
 }
 
 RoadBooksView.prototype.installRoadBookHandler = function roadBooksViewInstallRoadBookHandler(roadBookHandler) {
@@ -43,8 +45,22 @@ RoadBooksView.prototype.installAddRoadBookToBasketHandler = function installAddR
     }
 };
 
+RoadBooksView.prototype.installFilterRoadBookHandler = function installFilterRoadBookHandler(filterRoadBookHandler){
+    var button = this.domRequest.querySelector("#roadbook-filter");
+
+    button.addEventListener("keyup",function callBackfilterRoadBookHandler(domEvent){
+        var domObject = domEvent.currentTarget;
+        filterRoadBookHandler(domObject.value);
+    })
+};
+
 RoadBooksView.prototype.render = function roadBooksViewRender(dtoRoadBooks) {
     this.domRequest.querySelector(".content").innerHTML = this.roadBooksTemplateFunc(dtoRoadBooks);
+    this.renderList(dtoRoadBooks);
+};
+
+RoadBooksView.prototype.renderList = function roadBooksListViewRender(dtoRoadBooks) {
+    this.domRequest.querySelector("#roadbook-list-wrapper").innerHTML = this.roadBooksListTemplateFunc(dtoRoadBooks);
 };
 
 module.exports = RoadBooksView;
